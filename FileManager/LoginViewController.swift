@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
             print("Второе нажатие по кнопке")
                 for (key, value) in dictionary ?? [:] {
                     if passwordTextField.text == value as! String {
-                        print(value)
+                        print("Password is: \(value)")
                     } else {
                         errorTextField.text = "Не верный пароль"
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
