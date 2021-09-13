@@ -66,6 +66,9 @@ class LoginViewController: UIViewController {
                 for (key, value) in dictionary ?? [:] {
                     if passwordTextField.text == value as! String {
                         print("Password is: \(value)")
+                        let tabBarController = TabBarController()
+                        navigationController?.pushViewController(tabBarController, animated: true)
+                        
                     } else {
                         errorTextField.text = "Не верный пароль"
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

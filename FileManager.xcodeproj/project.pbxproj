@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,12 @@
 		C61E645126E8D6100025295A /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E645026E8D6100025295A /* FileManagerTests.swift */; };
 		C61E645C26E8D6110025295A /* FileManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E645B26E8D6110025295A /* FileManagerUITests.swift */; };
 		C6A2E2FD26EBB625008CA81E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E2FC26EBB625008CA81E /* LoginViewController.swift */; };
+		C6A2E2FF26EE72A8008CA81E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E2FE26EE72A8008CA81E /* TabBarController.swift */; };
+		C6A2E30126EE7782008CA81E /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30026EE7782008CA81E /* FilesViewController.swift */; };
+		C6A2E30326EE77A6008CA81E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30226EE77A6008CA81E /* SettingsViewController.swift */; };
+		C6A2E30526EE83CC008CA81E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30426EE83CC008CA81E /* UserModel.swift */; };
+		C6A2E30726EF5FFB008CA81E /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30626EF5FFA008CA81E /* ChangePasswordViewController.swift */; };
+		C6A2E30926EF7B11008CA81E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30826EF7B11008CA81E /* UserSettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +66,12 @@
 		C61E645B26E8D6110025295A /* FileManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerUITests.swift; sourceTree = "<group>"; };
 		C61E645D26E8D6110025295A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6A2E2FC26EBB625008CA81E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C6A2E2FE26EE72A8008CA81E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C6A2E30026EE7782008CA81E /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
+		C6A2E30226EE77A6008CA81E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C6A2E30426EE83CC008CA81E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		C6A2E30626EF5FFA008CA81E /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		C6A2E30826EF7B11008CA81E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F2DE3D21D9D7C814411F7F11 /* Pods-FileManager-FileManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManager-FileManagerUITests.debug.xcconfig"; path = "Target Support Files/Pods-FileManager-FileManagerUITests/Pods-FileManager-FileManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +132,12 @@
 				C61E643B26E8D60B0025295A /* SceneDelegate.swift */,
 				C61E643D26E8D60B0025295A /* ViewController.swift */,
 				C6A2E2FC26EBB625008CA81E /* LoginViewController.swift */,
+				C6A2E2FE26EE72A8008CA81E /* TabBarController.swift */,
+				C6A2E30026EE7782008CA81E /* FilesViewController.swift */,
+				C6A2E30226EE77A6008CA81E /* SettingsViewController.swift */,
+				C6A2E30626EF5FFA008CA81E /* ChangePasswordViewController.swift */,
+				C6A2E30426EE83CC008CA81E /* UserModel.swift */,
+				C6A2E30826EF7B11008CA81E /* UserSettings.swift */,
 				C61E644226E8D6100025295A /* Assets.xcassets */,
 				C61E644426E8D6100025295A /* LaunchScreen.storyboard */,
 				C61E644726E8D6100025295A /* Info.plist */,
@@ -155,7 +173,6 @@
 				08DD1145E9AE9E3B33BBD25A /* Pods-FileManagerTests.debug.xcconfig */,
 				7F224E5683EC1E3E044B91C4 /* Pods-FileManagerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -408,7 +425,13 @@
 			files = (
 				C6A2E2FD26EBB625008CA81E /* LoginViewController.swift in Sources */,
 				C61E643E26E8D60B0025295A /* ViewController.swift in Sources */,
+				C6A2E30526EE83CC008CA81E /* UserModel.swift in Sources */,
+				C6A2E30926EF7B11008CA81E /* UserSettings.swift in Sources */,
+				C6A2E30726EF5FFB008CA81E /* ChangePasswordViewController.swift in Sources */,
+				C6A2E30326EE77A6008CA81E /* SettingsViewController.swift in Sources */,
 				C61E643A26E8D60B0025295A /* AppDelegate.swift in Sources */,
+				C6A2E2FF26EE72A8008CA81E /* TabBarController.swift in Sources */,
+				C6A2E30126EE7782008CA81E /* FilesViewController.swift in Sources */,
 				C61E643C26E8D60B0025295A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
