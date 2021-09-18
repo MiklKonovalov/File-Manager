@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class FileManagerViewController: UIViewController {
     
     let fileManager = FileManager.default
     
@@ -153,7 +153,7 @@ class ViewController: UIViewController {
 
 
 //MARK: IMAGE PICKER
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func showImagePickerController() {
         let imagePickerController = UIImagePickerController()
@@ -192,7 +192,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
 
 
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+extension FileManagerViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayOfFilesName.count
     }
