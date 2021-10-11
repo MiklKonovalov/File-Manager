@@ -47,8 +47,9 @@ class FileManagerViewController: UIViewController {
             in: .userDomainMask,
             appropriateFor: nil,
             create: false)
+        
         //Распечатываем директорию для documentsUrl
-        print(documentsUrl)
+        print("DocumentsURL:\(documentsUrl.path)")
 
     }
     
@@ -85,7 +86,7 @@ class FileManagerViewController: UIViewController {
         while let file = files?.nextObject() {
             arrayOfFilesName.append(file as! String)
             arrayOfImages.append(loadImageFromDiskWith(fileName: file as! String) ?? UIImage())
-            
+
         }
         
         let documentsUrl = try! fileManager.url(
@@ -126,11 +127,11 @@ class FileManagerViewController: UIViewController {
         }
 
     }
-    
+
     //MARK: LOAD IMAGE
     func loadImageFromDiskWith(fileName: String) -> UIImage? {
 
-      let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
 
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
         let paths = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
@@ -166,26 +167,38 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         //MARK: CREATE FILE
-        guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else { return }
-                do {
-                    //Присваиваю изображение
-                    guard let image = info[.editedImage] as? UIImage else { return }
-                    arrayOfImages.append(image)
-                    print("Теперь в массиве фото: \(arrayOfImages)")
-                    let fileURL = directory.appendingPathComponent(info.description)
-                    arrayOfFilesName.append(fileURL!.lastPathComponent)
-                    tableView.reloadData()
-                    /*let data = UIImage(named: "бар2")?.pngData()
-                    fileManager.createFile(
-                        atPath: fileURL!.path,
-                        contents: data,
-                        attributes: [FileAttributeKey.creationDate: Date()])*/
-                    print("Теперь в массиве названий фото: \(arrayOfFilesName)")
-                } catch {
-                    print(error)
-                }
         
+        //Обращаемся к директории "Documents"
+        guard let directory = try? FileManager.default.url(for: .documentDirectory,
+                                                           in: .userDomainMask,
+                                                           appropriateFor: nil,
+                                                           create: false)
+                                                            as NSURL else { return }
+        //Добавляем к ней название файла
+        let fileURL = directory.appendingPathComponent(info.description)
+
+        //Создаём файл
+        let fileData = Data()
+        
+        FileManager.default.createFile(atPath: fileURL?.path ?? "",
+                                           contents: fileData,
+                                           attributes: nil)
+        //Присваиваю изображение
+        guard let image = info[.editedImage] as? UIImage else { return }
+        
+        saveImage(imageName: info.description, image: image)
+        
+        arrayOfImages.append(image)
+        print("Теперь в массиве фото: \(arrayOfImages)")
+        
+        
+        guard let fileURL = fileURL else { return }
+        
+        arrayOfFilesName.append(fileURL.lastPathComponent)
+        tableView.reloadData()
+        print("Теперь в массиве названий фото: \(arrayOfFilesName)")
         print("Файл записан")
+        
         dismiss(animated: true, completion: nil)
     }
 }
