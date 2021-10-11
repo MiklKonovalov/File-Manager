@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         let fileManagerViewController = FileManagerViewController()
         let loginViewController = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: fileManagerViewController)
+        let navigationController = UINavigationController(rootViewController: loginViewController)
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }
