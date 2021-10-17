@@ -10,50 +10,57 @@ import UIKit
 
 class FilesViewController: UIViewController, FilesViewControllerDelegate {
         
-    var settingsViewController = SettingsViewController()
+    let settingsViewController = SettingsViewController()
     
-    let tableView = UITableView()
-    var safeArea: UILayoutGuide!
+    let tableview: UITableView = {
+        let tableview = UITableView()
+        tableview.backgroundColor = UIColor.white
+        tableview.translatesAutoresizingMaskIntoConstraints = false
+        return tableview
+    }()
+    
     var characters = ["Link", "Zelda", "Ganondorf", "Midna"] {
         didSet {
             print(characters)
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        sortAndReload()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         setupTableView()
-        
-        view.backgroundColor = .green
-        
-        tableView.dataSource = self
-        
+        view.backgroundColor = .white
         settingsViewController.delegate = self
         
     }
     
     func sortAndReload() {
         characters.sort()
-        tableView.reloadData()
+        tableview.reloadData()
     }
     
-//    func reverseSort() {
-//        for i in characters {
-//            let reversed = characters.sorted { $0 > $1 }
-//        }
-//        characters.reverse()
-//        tableView.reloadData()
-//    }
-    
     func setupTableView() {
-        view.addSubview(tableView)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        tableview.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(tableview)
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let constraints = [
+            tableview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableview.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            tableview.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        ]
+        NSLayoutConstraint.activate(constraints)
+    
+        tableview.dataSource = self
+        tableview.dataSource = self
       }
 }
 

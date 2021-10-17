@@ -42,19 +42,12 @@ class SettingsViewController: UIViewController {
     }()
     
     @objc func changeAlphabetRange() {
-        let filesViewControlle = FilesViewController()
-        sortAlphabetRange()
-        filesViewControlle.sortAndReload()
-        
+        delegate?.sortAndReload()
     }
     
     @objc func changePassword() {
         let changePasswordViewController = ChangePasswordViewController()
         present(changePasswordViewController, animated: true, completion: nil)
-    }
-    
-    func sortAlphabetRange() {
-        delegate?.sortAndReload()
     }
     
     override func viewDidLoad() {

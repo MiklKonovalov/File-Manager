@@ -479,5 +479,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57B65E93-F3E3-4B2C-9B0F-DA90FC69F955"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FileManager/Controllers/TabBarController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "57B65E93-F3E3-4B2C-9B0F-DA90FC69F955 - c49f1b9ed470aec2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FileManager.TabBarController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "FileManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/misha/Documents/XCode/FileManager/FileManager/Controllers/TabBarController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "57B65E93-F3E3-4B2C-9B0F-DA90FC69F955 - 7127a55d99bcea37"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in FileManager.TabBarController.viewWillAppear(Swift.Bool) -&gt; ()"
+                  moduleName = "FileManager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/misha/Documents/XCode/FileManager/FileManager/Controllers/TabBarController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

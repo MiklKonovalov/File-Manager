@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
     let settingsViewController = SettingsViewController()
     
     override func viewWillAppear(_ animated: Bool) {
-        self.filesViewController.tableView.reloadData()
+        
     }
     
     override func viewDidLoad() {
