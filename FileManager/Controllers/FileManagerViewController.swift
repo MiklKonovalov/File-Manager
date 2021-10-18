@@ -174,8 +174,14 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
                                                            appropriateFor: nil,
                                                            create: false)
                                                             as NSURL else { return }
+        
         //Добавляем к ней название файла
-        let fileURL = directory.appendingPathComponent(info.description)
+        let path = String(info.description) //->String
+        print("ИМЯ ФАЙЛА: \(path)")
+        let fileName = URL(fileURLWithPath: path).deletingPathExtension().lastPathComponent
+        print("НОВОЕ ИМЯ ФАЙЛА: \(fileName)")
+        
+        let fileURL = directory.appendingPathComponent(fileName) //->String
 
         //Создаём файл
         let fileData = Data()
@@ -186,7 +192,7 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
         //Присваиваю изображение
         guard let image = info[.editedImage] as? UIImage else { return }
         
-        saveImage(imageName: info.description, image: image)
+        saveImage(imageName: fileName, image: image)
         
         arrayOfImages.append(image)
         print("Теперь в массиве фото: \(arrayOfImages)")
