@@ -13,8 +13,6 @@ class LoginViewController: UIViewController {
     
     private var count = 0
     
-    let dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
-    
     private var passwordTextField: UITextField = {
         let userNameTextField = UITextField()
         userNameTextField.layer.borderColor = UIColor.white.cgColor
@@ -48,23 +46,26 @@ class LoginViewController: UIViewController {
     }()
     
     @objc func logInButtonPressed() {
-        if count == 0 {
+        //По нажатию кнопки создаём новый пароль и записываем его данные
+        var dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
+        if dictionary == nil {
         //Сохраняем данные в keychain
-        if let password = passwordTextField.text, passwordTextField.text?.count ?? 1 > 4 {
+        if let password = passwordTextField.text, passwordTextField.text?.count ?? 1 > 3 {
             do {
                 try Locksmith.saveData(data: ["password" : password], forUserAccount: "MyAccount")
+                print(password)
             } catch {
-                print("Unable to save data")
+                print("Unable to save data or data has already saved")
             }
         }
-        
+        //После записи пароля меняем название кнопки и обнуляем текстовое поле
         logInButton.setTitle("Повторите пароль", for: .normal)
         passwordTextField.text = ""
-        count += 1
-        } else if count == 1 {
+        //При втором нажатии кнопки сравниваем введённый пароль с текстовым полем
+        } else if dictionary != nil {
             print("Второе нажатие по кнопке")
-                for (key, value) in dictionary ?? [:] {
-                    if passwordTextField.text == value as! String {
+            for (_, value) in dictionary ?? [:] {
+                if passwordTextField.text == value as? String {
                         print("Password is: \(value)")
                         let tabBarController = TabBarController()
                         navigationController?.pushViewController(tabBarController, animated: true)
@@ -88,7 +89,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         //загружаем данные из keychain
-        print(dictionary)
+        let dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
+        print(dictionary ?? [:])
         
         if dictionary != nil {
             logInButton.setTitle("Введите пароль", for: .normal)
