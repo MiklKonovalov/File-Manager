@@ -95,20 +95,19 @@ class FileManagerViewController: UIViewController {
             appropriateFor: nil,
             create: false)
         
-        do {
             let filesInDirectory = try! fileManager.contentsOfDirectory(
                         at: documentsUrl,
                         includingPropertiesForKeys: nil,
                         options: [])
             
-            let files = filesInDirectory
-            if files.count > 0 {
+            let file = filesInDirectory
+            if file.count > 0 {
                 print("Documents has files")
 
             } else {
                 print("files not foung")
             }
-        } catch {}
+
     }
     
     //MARK: SAVE IMAGE
@@ -116,8 +115,7 @@ class FileManagerViewController: UIViewController {
 
      guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
 
-        let fileName = imageName
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        let fileURL = documentsDirectory.appendingPathComponent(imageName)
         guard let data = image.jpegData(compressionQuality: 1) else { return }
 
         do {
@@ -168,44 +166,25 @@ extension FileManagerViewController: UIImagePickerControllerDelegate, UINavigati
         
         //MARK: CREATE FILE
         
-        //Обращаемся к директории "Documents"
-        guard let directory = try? FileManager.default.url(for: .documentDirectory,
-                                                           in: .userDomainMask,
-                                                           appropriateFor: nil,
-                                                           create: false)
-                                                            as NSURL else { return }
-        
-        //Добавляем к ней название файла
-        let path = String(info.description) //->String
-        print("ИМЯ ФАЙЛА: \(path)")
-        let fileName = URL(fileURLWithPath: path).deletingPathExtension().lastPathComponent
-        print("НОВОЕ ИМЯ ФАЙЛА: \(fileName)")
-        
-        let fileURL = directory.appendingPathComponent(fileName) //->String
-
-        //Создаём файл
-        let fileData = Data()
-        
-        FileManager.default.createFile(atPath: fileURL?.path ?? "",
-                                           contents: fileData,
-                                           attributes: nil)
-        //Присваиваю изображение
-        guard let image = info[.editedImage] as? UIImage else { return }
-        
-        saveImage(imageName: fileName, image: image)
-        
-        arrayOfImages.append(image)
-        print("Теперь в массиве фото: \(arrayOfImages)")
-        
-        
-        guard let fileURL = fileURL else { return }
-        
-        arrayOfFilesName.append(fileURL.lastPathComponent)
-        tableView.reloadData()
-        print("Теперь в массиве названий фото: \(arrayOfFilesName)")
-        print("Файл записан")
-        
-        dismiss(animated: true, completion: nil)
+        //Получаем значение imageURL в коде из словаря info
+        if let imageURL = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            let imagePath = imageURL.lastPathComponent
+            
+            //Присваиваю изображение
+            guard let image = info[.editedImage] as? UIImage else { return }
+            saveImage(imageName: imagePath, image: image)
+            arrayOfImages.append(image)
+            print("Теперь в массиве фото: \(arrayOfImages)")
+            arrayOfFilesName.append(imageURL.lastPathComponent)
+            tableView.reloadData()
+            print("Теперь в массиве названий фото: \(arrayOfFilesName)")
+            print("Файл записан")
+            
+            dismiss(animated: true, completion: nil)
+        } else {
+            print("imageURL not correct")
+        }
+       
     }
 }
 

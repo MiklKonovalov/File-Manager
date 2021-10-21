@@ -63,8 +63,8 @@ class LoginViewController: UIViewController {
         count += 1
         } else if count == 1 {
             print("Второе нажатие по кнопке")
-                for (key, value) in dictionary ?? [:] {
-                    if passwordTextField.text == value as! String {
+            for (_, value) in dictionary ?? [:] {
+                if passwordTextField.text == value as? String {
                         print("Password is: \(value)")
                         let tabBarController = TabBarController()
                         navigationController?.pushViewController(tabBarController, animated: true)
@@ -88,7 +88,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         //загружаем данные из keychain
-        print(dictionary)
+        print(dictionary as Any)
         
         if dictionary != nil {
             logInButton.setTitle("Введите пароль", for: .normal)
