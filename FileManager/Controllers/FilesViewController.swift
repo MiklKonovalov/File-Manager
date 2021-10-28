@@ -26,6 +26,8 @@ class FilesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let fileManager = FileManager.default
+        
         setupTableView()
         view.backgroundColor = .white
         
@@ -35,6 +37,27 @@ class FilesViewController: UIViewController {
         } else if SettingsModel.sort == 1 {
             unSortAndReload()
             tableview.reloadData()
+        }
+        
+        //Получаем путь для Documents
+        guard let documentsUrl = fileManager.urls(
+            for: .documentDirectory,
+                in: .userDomainMask).first else { return }
+        
+        //Распечатываем директорию для documentsUrl
+        print("DocumentsURL:\(documentsUrl.path)")
+        
+        //Создаём новую папку
+        let newFolder = documentsUrl.appendingPathComponent("FilesForSort")
+        
+        do {
+            try fileManager.createDirectory(at: newFolder, withIntermediateDirectories: true, attributes: [:])
+            
+            let fileApple = newFolder.appendingPathComponent("Apple.txt")
+            fileManager.createFile(atPath: fileApple.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
+        }
+            catch {
+                print(error)
         }
     }
     
