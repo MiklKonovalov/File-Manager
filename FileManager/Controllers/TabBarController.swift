@@ -14,13 +14,19 @@ class TabBarController: UITabBarController {
     let settingsViewController = SettingsViewController()
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        settingsViewController.callback = {
+            self.sortAndReload()
+        }
+        
+        settingsViewController.callbackUnsort = {
+            self.unSortAndReload()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .blue
         
         self.setViewControllers([filesViewController, settingsViewController], animated: false)
         
@@ -32,6 +38,16 @@ class TabBarController: UITabBarController {
         myTabBarItem2.image = UIImage(named: "settings")
         myTabBarItem2.title = "Настройки"
         
+        
     }
     
+    func sortAndReload() {
+        filesViewController.characters.sort()
+        filesViewController.tableview.reloadData()
+    }
+    
+    func unSortAndReload() {
+        filesViewController.characters.sort(by: >)
+        filesViewController.tableview.reloadData()
+    }
 }

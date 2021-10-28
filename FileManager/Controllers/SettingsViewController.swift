@@ -8,14 +8,11 @@
 import Foundation
 import UIKit
 
-protocol FilesViewControllerDelegate {
-    
-    func sortAndReload()
-}
-
 class SettingsViewController: UIViewController {
     
-    var delegate: FilesViewControllerDelegate?
+    var callback: (() -> Void)?
+    
+    var callbackUnsort: (() -> Void)?
     
     let changePasswordButton: UIButton = {
         let button = UIButton(type: .system)
@@ -23,7 +20,7 @@ class SettingsViewController: UIViewController {
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blue
         button.setTitle("Изменить пароль", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(changePassword), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -35,14 +32,32 @@ class SettingsViewController: UIViewController {
         button.clipsToBounds = true
         button.backgroundColor = UIColor.blue
         button.setTitle("Поменять алфавитный порядок", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         button.addTarget(self, action: #selector(changeAlphabetRange), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    let sortTextField: UILabel = {
+        let sortTextField = UILabel()
+        sortTextField.font = UIFont.systemFont(ofSize: 25, weight: .regular)
+        sortTextField.textColor = .green
+        sortTextField.textAlignment = .center
+        sortTextField.translatesAutoresizingMaskIntoConstraints = false
+        return sortTextField
+    }()
+    
     @objc func changeAlphabetRange() {
-        delegate?.sortAndReload()
+        
+        if SettingsModel.sort == 0 {
+            callback?()
+            SettingsModel.sort = 1
+            sortTextField.text = "Показан алфавитный порядок"
+        } else if SettingsModel.sort == 1 {
+            callbackUnsort?()
+            SettingsModel.sort = 0
+            sortTextField.text = "Показан обратный порядок"
+        }
     }
     
     @objc func changePassword() {
@@ -57,6 +72,13 @@ class SettingsViewController: UIViewController {
         
         view.addSubview(changePasswordButton)
         view.addSubview(changeAlphabetButton)
+        view.addSubview(sortTextField)
+        
+        if SettingsModel.sort == 1 {
+            sortTextField.text = "Показан в алфавитном порядке"
+        } else if SettingsModel.sort == 0 {
+            sortTextField.text = ""
+        }
         
         let constraints = [
         
@@ -69,6 +91,11 @@ class SettingsViewController: UIViewController {
             changeAlphabetButton.leadingAnchor.constraint(equalTo: changePasswordButton.leadingAnchor, constant: 0),
             changeAlphabetButton.trailingAnchor.constraint(equalTo: changePasswordButton.trailingAnchor, constant: 0),
             changeAlphabetButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            sortTextField.topAnchor.constraint(equalTo: changeAlphabetButton.bottomAnchor, constant: 20),
+            sortTextField.leadingAnchor.constraint(equalTo: changeAlphabetButton.leadingAnchor, constant: 0),
+            sortTextField.trailingAnchor.constraint(equalTo: changeAlphabetButton.trailingAnchor, constant: 0),
+            sortTextField.heightAnchor.constraint(equalToConstant: 50),
         
         ]
         NSLayoutConstraint.activate(constraints)

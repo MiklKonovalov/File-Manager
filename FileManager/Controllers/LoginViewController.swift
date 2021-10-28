@@ -11,6 +11,8 @@ import Locksmith
 
 class LoginViewController: UIViewController {
     
+    private var firstPass: String? = nil
+    
     private var count = 0
     
     private var passwordTextField: UITextField = {
@@ -46,44 +48,75 @@ class LoginViewController: UIViewController {
     }()
     
     @objc func logInButtonPressed() {
-        //По нажатию кнопки создаём новый пароль и записываем его данные
-        var dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
+        //По нажатию кнопку в первый раз записываем пароль в массив
+        let dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
+        if count == 0 && dictionary == nil {
+        print(count)
+        if let pass = passwordTextField.text, passwordTextField.text?.count ?? 1 > 3 {
+            firstPass = pass
+        } else {
+            errorTextField.text = "Пароль должен содержать не менее 4ёх символов"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            UIView.animate(withDuration: 0.3) {
+                self.errorTextField.alpha = 0
+                self.logInButton.setTitle("Создайте пароль", for: .normal)
+                self.passwordTextField.text = ""
+                }
+            }
+            
+        }
+        
+        //После первого ввода пароля меняем название кнопки и обнуляем текстовое поле
+        logInButton.setTitle("Повторите пароль", for: .normal)
+        passwordTextField.text = ""
+        count += 1
+        print("После первого нажатия кнопки count = \(count)")
+        } else if count == 1 {
+        //При втором нажатии кнопки сравниваем введённый пароль с текстовым полем и, если они совпадают, то записываем пароль в keyChain
+        let dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
         if dictionary == nil {
         //Сохраняем данные в keychain
-        if let password = passwordTextField.text, passwordTextField.text?.count ?? 1 > 3 {
+            if let password = passwordTextField.text, passwordTextField.text?.count ?? 1 > 3, passwordTextField.text == firstPass {
             do {
                 try Locksmith.saveData(data: ["password" : password], forUserAccount: "MyAccount")
                 print(password)
+                let tabBarController = TabBarController()
+                navigationController?.pushViewController(tabBarController, animated: true)
             } catch {
                 print("Unable to save data or data has already saved")
             }
-        }
-        //После записи пароля меняем название кнопки и обнуляем текстовое поле
-        logInButton.setTitle("Повторите пароль", for: .normal)
-        passwordTextField.text = ""
-        //При втором нажатии кнопки сравниваем введённый пароль с текстовым полем
-        } else if dictionary != nil {
-            print("Второе нажатие по кнопке")
-            for (_, value) in dictionary ?? [:] {
-                if passwordTextField.text == value as? String {
-                        print("Password is: \(value)")
-                        let tabBarController = TabBarController()
-                        navigationController?.pushViewController(tabBarController, animated: true)
-                        
-                    } else {
-                        errorTextField.text = "Не верный пароль"
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        UIView.animate(withDuration: 0.3) {
-                            self.errorTextField.alpha = 0
-                            self.logInButton.setTitle("Введите пароль", for: .normal)
-                            self.passwordTextField.text = ""
-                            self.count = 0
-                            }
-                        }
+            } else {
+                errorTextField.text = "Пароли не совподают"
+                //Возвращаемся к созданию пароля
+                firstPass = nil
+                count -= 1
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIView.animate(withDuration: 0.3) {
+                    self.errorTextField.alpha = 0
+                    self.logInButton.setTitle("Создайте пароль", for: .normal)
+                    self.passwordTextField.text = ""
+                    self.count = 0
+                    print("Если подтверждение пароля не верно, то count = \(self.count)")
                     }
                 }
+            }
+        }
+    } else {
+        let dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")
+        if dictionary != nil {
+            print("Словарь не пустой")
+            for (_, value) in dictionary ?? [:] {
+                if passwordTextField.text == value as? String {
+                    print("Password is: \(value)")
+                    let tabBarController = TabBarController()
+                    navigationController?.pushViewController(tabBarController, animated: true)
+                } else {
+                    self.errorTextField.text = "Введён не верный пароль"
+                }
+            }
         }
     }
+}
     
     override func viewDidLoad() {
         super.viewDidLoad()

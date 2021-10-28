@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-class FilesViewController: UIViewController, FilesViewControllerDelegate {
-        
-    let settingsViewController = SettingsViewController()
+class FilesViewController: UIViewController {
     
     let tableview: UITableView = {
         let tableview = UITableView()
@@ -19,31 +17,34 @@ class FilesViewController: UIViewController, FilesViewControllerDelegate {
         return tableview
     }()
     
-    var characters = ["Link", "Zelda", "Ganondorf", "Midna"] {
+    var characters = ["Яблоко", "Банан", "Абрикос", "Персик"] {
         didSet {
             print(characters)
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        sortAndReload()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         setupTableView()
         view.backgroundColor = .white
-        settingsViewController.delegate = self
         
+        if SettingsModel.sort == 1 {
+            sortAndReload()
+            tableview.reloadData()
+        } else if SettingsModel.sort == 1 {
+            unSortAndReload()
+            tableview.reloadData()
+        }
     }
     
     func sortAndReload() {
         characters.sort()
+        tableview.reloadData()
+    }
+    
+    func unSortAndReload() {
+        characters.sort(by: >)
         tableview.reloadData()
     }
     
@@ -77,7 +78,5 @@ extension FilesViewController: UITableViewDataSource {
         cell.textLabel?.text = characters[indexPath.row]
         print(cell)
         return cell
-        
     }
-    
 }
