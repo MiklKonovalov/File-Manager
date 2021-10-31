@@ -31,11 +31,11 @@ class TabBarController: UITabBarController {
         self.setViewControllers([filesViewController, settingsViewController], animated: false)
         
         let myTabBarItem1 = (self.tabBar.items?[0])! as UITabBarItem
-        myTabBarItem1.image = UIImage(named: "files")
+        myTabBarItem1.image = UIImage(systemName: "folder")
         myTabBarItem1.title = "Файлы"
         
         let myTabBarItem2 = (self.tabBar.items?[1])! as UITabBarItem
-        myTabBarItem2.image = UIImage(named: "settings")
+        myTabBarItem2.image = UIImage(systemName: "gear")
         myTabBarItem2.title = "Настройки"
     }
     
