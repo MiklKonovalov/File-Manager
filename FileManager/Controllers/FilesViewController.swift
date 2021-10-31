@@ -17,7 +17,7 @@ class FilesViewController: UIViewController {
         return tableview
     }()
     
-    var characters = ["Яблоко", "Банан", "Абрикос", "Персик"] {
+    var characters = [String]() {
         didSet {
             print(characters)
         }
@@ -34,7 +34,7 @@ class FilesViewController: UIViewController {
         if SettingsModel.sort == 1 {
             sortAndReload()
             tableview.reloadData()
-        } else if SettingsModel.sort == 1 {
+        } else if SettingsModel.sort == 0 {
             unSortAndReload()
             tableview.reloadData()
         }
@@ -46,18 +46,30 @@ class FilesViewController: UIViewController {
         
         //Распечатываем директорию для documentsUrl
         print("DocumentsURL:\(documentsUrl.path)")
-        
-        //Создаём новую папку
-        let newFolder = documentsUrl.appendingPathComponent("FilesForSort")
-        
-        do {
-            try fileManager.createDirectory(at: newFolder, withIntermediateDirectories: true, attributes: [:])
             
-            let fileApple = newFolder.appendingPathComponent("Apple.txt")
-            fileManager.createFile(atPath: fileApple.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
-        }
-            catch {
-                print(error)
+        //Создаём файл
+        let fileApple = documentsUrl.appendingPathComponent("Apple.txt")
+        let fileBananas = documentsUrl.appendingPathComponent("Bananas.txt")
+        let filePeach = documentsUrl.appendingPathComponent("Peach.txt")
+        let fileMelon = documentsUrl.appendingPathComponent("Melon.txt")
+            
+        fileManager.createFile(atPath: fileApple.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
+        fileManager.createFile(atPath: fileBananas.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
+        fileManager.createFile(atPath: filePeach.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
+        fileManager.createFile(atPath: fileMelon.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
+            
+        characters.append(fileApple.lastPathComponent)
+        characters.append(fileBananas.lastPathComponent)
+        characters.append(filePeach.lastPathComponent)
+        characters.append(fileMelon.lastPathComponent)
+        
+        
+        let documentDirectoryPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+        let myFilesPath = "\(documentDirectoryPath)"
+        let filemanager = FileManager.default
+        let files = filemanager.enumerator(atPath: myFilesPath)
+        while let file = files?.nextObject() {
+            characters.append(file as! String)
         }
     }
     

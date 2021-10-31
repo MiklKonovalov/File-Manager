@@ -37,7 +37,6 @@ class TabBarController: UITabBarController {
         let myTabBarItem2 = (self.tabBar.items?[1])! as UITabBarItem
         myTabBarItem2.image = UIImage(named: "settings")
         myTabBarItem2.title = "Настройки"
-        
     }
     
     func sortAndReload() {
