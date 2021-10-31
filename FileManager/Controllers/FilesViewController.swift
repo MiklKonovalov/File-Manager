@@ -23,13 +23,8 @@ class FilesViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let fileManager = FileManager.default
-        
-        setupTableView()
-        view.backgroundColor = .white
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if SettingsModel.sort == 1 {
             sortAndReload()
@@ -38,6 +33,17 @@ class FilesViewController: UIViewController {
             unSortAndReload()
             tableview.reloadData()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let fileManager = FileManager.default
+        
+        setupTableView()
+        view.backgroundColor = .white
+        
+        
         
         //Получаем путь для Documents
         guard let documentsUrl = fileManager.urls(
