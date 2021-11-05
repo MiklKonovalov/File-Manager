@@ -100,6 +100,17 @@ class LoginViewController: UIViewController {
                     }
                 }
             }
+        } else if dictionary != nil {
+            print("Словарь не пустой")
+            for (_, value) in dictionary ?? [:] {
+                if passwordTextField.text == value as? String {
+                    print("Password is: \(value)")
+                    let tabBarController = TabBarController()
+                    navigationController?.pushViewController(tabBarController, animated: true)
+                } else {
+                    self.errorTextField.text = "Введён не верный пароль"
+                }
+            }
         }
     } else {
         let dictionary = Locksmith.loadDataForUserAccount(userAccount: "MyAccount")

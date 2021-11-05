@@ -40,12 +40,16 @@ class TabBarController: UITabBarController {
     }
     
     func sortAndReload() {
-        filesViewController.characters.sort()
+        filesViewController.characters.sort { (lhs: String, rhs: String) -> Bool in
+            return lhs.compare(rhs, options: .caseInsensitive) == .orderedAscending
+        }
         filesViewController.tableview.reloadData()
     }
     
     func unSortAndReload() {
-        filesViewController.characters.sort(by: >)
+        filesViewController.characters.sort { (lhs: String, rhs: String) -> Bool in
+            return lhs > rhs && lhs.compare(rhs, options: .caseInsensitive) == .orderedDescending
+        }
         filesViewController.tableview.reloadData()
     }
 }

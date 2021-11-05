@@ -49,13 +49,13 @@ class SettingsViewController: UIViewController {
     
     @objc func changeAlphabetRange() {
         
-        if SettingsModel.sort == 0 {
+        if SettingsModel.sort == 0 || SettingsModel.sort == 2 {
             callback?()
             SettingsModel.sort = 1
             sortTextField.text = "Показан алфавитный порядок"
         } else if SettingsModel.sort == 1 {
             callbackUnsort?()
-            SettingsModel.sort = 0
+            SettingsModel.sort = 2
             sortTextField.text = "Показан обратный порядок"
         }
     }
@@ -76,8 +76,8 @@ class SettingsViewController: UIViewController {
         
         if SettingsModel.sort == 1 {
             sortTextField.text = "Показан в алфавитном порядке"
-        } else if SettingsModel.sort == 0 {
-            sortTextField.text = ""
+        } else if SettingsModel.sort == 2 {
+            sortTextField.text = "Показан обратный порядок"
         }
         
         let constraints = [

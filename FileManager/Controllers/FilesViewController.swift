@@ -29,7 +29,7 @@ class FilesViewController: UIViewController {
         if SettingsModel.sort == 1 {
             sortAndReload()
             tableview.reloadData()
-        } else if SettingsModel.sort == 0 {
+        } else if SettingsModel.sort == 2 {
             unSortAndReload()
             tableview.reloadData()
         }
@@ -58,17 +58,19 @@ class FilesViewController: UIViewController {
         let fileBananas = documentsUrl.appendingPathComponent("Bananas.txt")
         let filePeach = documentsUrl.appendingPathComponent("Peach.txt")
         let fileMelon = documentsUrl.appendingPathComponent("Melon.txt")
+        let fileFruits = documentsUrl.appendingPathComponent("fruits.txt")
             
         fileManager.createFile(atPath: fileApple.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
         fileManager.createFile(atPath: fileBananas.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
         fileManager.createFile(atPath: filePeach.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
         fileManager.createFile(atPath: fileMelon.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
+        fileManager.createFile(atPath: fileFruits.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
             
         characters.append(fileApple.lastPathComponent)
         characters.append(fileBananas.lastPathComponent)
         characters.append(filePeach.lastPathComponent)
         characters.append(fileMelon.lastPathComponent)
-        
+        characters.append(fileFruits.lastPathComponent)
         
         let documentDirectoryPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let myFilesPath = "\(documentDirectoryPath)"
@@ -80,12 +82,16 @@ class FilesViewController: UIViewController {
     }
     
     func sortAndReload() {
-        characters.sort()
+        characters.sort { (lhs: String, rhs: String) -> Bool in
+            return lhs.compare(rhs, options: .caseInsensitive) == .orderedAscending
+        }
         tableview.reloadData()
     }
     
     func unSortAndReload() {
-        characters.sort(by: >)
+        characters.sort { (lhs: String, rhs: String) -> Bool in
+            return lhs.compare(rhs, options: .caseInsensitive) == .orderedDescending
+        }
         tableview.reloadData()
     }
     
