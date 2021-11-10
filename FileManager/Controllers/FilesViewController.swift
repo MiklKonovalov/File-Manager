@@ -58,33 +58,6 @@ class FilesViewController: UIViewController {
         
         //Распечатываем директорию для documentsUrl
         print("DocumentsURL:\(documentsUrl.path)")
-        
-        //Создаём файл
-        /*let fileApple = documentsUrl.appendingPathComponent("Apple.txt")
-        let fileBananas = documentsUrl.appendingPathComponent("Bananas.txt")
-        let filePeach = documentsUrl.appendingPathComponent("Peach.txt")
-        let fileMelon = documentsUrl.appendingPathComponent("Melon.txt")
-        let fileFruits = documentsUrl.appendingPathComponent("fruits.txt")
-            
-        fileManager.createFile(atPath: fileApple.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
-        fileManager.createFile(atPath: fileBananas.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
-        fileManager.createFile(atPath: filePeach.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
-        fileManager.createFile(atPath: fileMelon.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
-        fileManager.createFile(atPath: fileFruits.path, contents: nil, attributes: [FileAttributeKey.creationDate: Date()])
-            
-        characters.append(fileApple.lastPathComponent)
-        characters.append(fileBananas.lastPathComponent)
-        characters.append(filePeach.lastPathComponent)
-        characters.append(fileMelon.lastPathComponent)
-        characters.append(fileFruits.lastPathComponent)*/
-        
-        /*let documentDirectoryPath: String = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let myFilesPath = "\(documentDirectoryPath)"
-        let filemanager = FileManager.default
-        let files = filemanager.enumerator(atPath: myFilesPath)
-        while let file = files?.nextObject() {
-            characters.append(file as! String)
-        }*/
     }
     
     //MARK: CREATE NAVBAR
@@ -140,28 +113,6 @@ class FilesViewController: UIViewController {
             arrayOfImages.append(loadImageFromDiskWith(fileName: file as! String) ?? UIImage())
 
         }
-        
-        //Получаем путь для Documents
-        /*guard let documentsUrl = fileManager.urls(
-                for: .documentDirectory,
-                in: .userDomainMask) else { return }
-        
-        do {
-            let filesInDirectory = try fileManager.contentsOfDirectory(
-                        at: documentsUrl,
-                        includingPropertiesForKeys: nil,
-                        options: [])
-            
-            let files = filesInDirectory
-            if files.count > 0 {
-                print("Documents has files")
-
-            } else {
-                print("files not foung")
-            }
-        } catch {
-            print(error)
-        }*/
     }
     
     //MARK: SAVE IMAGE
