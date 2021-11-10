@@ -96,7 +96,7 @@ class FileManagerViewController: UIViewController {
             create: false)
         
         do {
-            let filesInDirectory = try! fileManager.contentsOfDirectory(
+            let filesInDirectory = try fileManager.contentsOfDirectory(
                         at: documentsUrl,
                         includingPropertiesForKeys: nil,
                         options: [])
@@ -108,7 +108,9 @@ class FileManagerViewController: UIViewController {
             } else {
                 print("files not foung")
             }
-        } catch {}
+        } catch {
+            print(error)
+        }
     }
     
     //MARK: SAVE IMAGE

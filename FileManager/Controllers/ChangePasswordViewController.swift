@@ -47,7 +47,7 @@ class ChangePasswordViewController: UIViewController {
         }
         self.dismiss(animated: true, completion: nil)
         print("Set new password")
-        print(UserSettings.password)
+        print(UserSettings.password as Any)
     }
     
     override func viewDidLoad() {
