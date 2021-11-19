@@ -134,7 +134,7 @@
 			children = (
 				C61E643926E8D60B0025295A /* AppDelegate.swift */,
 				C61E643B26E8D60B0025295A /* SceneDelegate.swift */,
-				C6A2E30826EF7B11008CA81E /* UserSettings.swift */,
+				C6612FC72747D01B00B33BD2 /* ViewModel */,
 				C61ED9F926F5261B0052B7ED /* Controllers */,
 				C61ED9F826F525F60052B7ED /* Model */,
 				C61ED9F726F525E10052B7ED /* Table */,
@@ -191,6 +191,14 @@
 				C6A2E30626EF5FFA008CA81E /* ChangePasswordViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C6612FC72747D01B00B33BD2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6A2E30826EF7B11008CA81E /* UserSettings.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		F46BFFA492229A782D017A12 /* Pods */ = {

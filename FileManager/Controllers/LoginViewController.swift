@@ -11,6 +11,10 @@ import Locksmith
 
 class LoginViewController: UIViewController {
     
+    var loginCallback: (() -> Void)?
+    
+    var loginCallbackUnsort: (() -> Void)?
+    
     private var firstPass: String? = nil
     
     private var count = 0
@@ -120,6 +124,7 @@ class LoginViewController: UIViewController {
                 if passwordTextField.text == value as? String {
                     print("Password is: \(value)")
                     let tabBarController = TabBarController()
+                    print(SettingsModel.sort!)
                     navigationController?.pushViewController(tabBarController, animated: true)
                 } else {
                     self.errorTextField.text = "Введён не верный пароль"

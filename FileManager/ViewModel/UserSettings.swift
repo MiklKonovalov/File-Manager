@@ -27,8 +27,4 @@ final class UserSettings {
             }
         }
     }
-    
-//    init(password: String) {
-//        self.password = password
-//    }
 }

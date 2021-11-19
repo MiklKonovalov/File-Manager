@@ -23,6 +23,13 @@ class TabBarController: UITabBarController {
         settingsViewController.callbackUnsort = {
             self.unSortAndReload()
         }
+        
+        if SettingsModel.sort == 0 || SettingsModel.sort == 2 {
+            unSortAndReload()
+        } else if SettingsModel.sort == 1 {
+            sortAndReload()
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -51,10 +58,6 @@ class TabBarController: UITabBarController {
             return lhs > rhs && lhs.compare(rhs, options: .caseInsensitive) == .orderedDescending
         }
         filesViewController.tableview.reloadData()
-    }
-    
-    @objc func addPhoto() {
-        print("123")
     }
 
 }
