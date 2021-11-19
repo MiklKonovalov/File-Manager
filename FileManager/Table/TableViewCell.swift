@@ -36,10 +36,6 @@ class TableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    public func configure(image: UIImage) {
-//        myImageView.image = loadImage
-//    }
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         myImageView.image = loadImage

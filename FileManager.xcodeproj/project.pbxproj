@@ -13,7 +13,6 @@
 		C61E40832729A3CA00EB79C1 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E40822729A3CA00EB79C1 /* SettingsModel.swift */; };
 		C61E643A26E8D60B0025295A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E643926E8D60B0025295A /* AppDelegate.swift */; };
 		C61E643C26E8D60B0025295A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E643B26E8D60B0025295A /* SceneDelegate.swift */; };
-		C61E643E26E8D60B0025295A /* FileManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E643D26E8D60B0025295A /* FileManagerViewController.swift */; };
 		C61E644326E8D6100025295A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C61E644226E8D6100025295A /* Assets.xcassets */; };
 		C61E644626E8D6100025295A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C61E644426E8D6100025295A /* LaunchScreen.storyboard */; };
 		C61E645126E8D6100025295A /* FileManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61E645026E8D6100025295A /* FileManagerTests.swift */; };
@@ -23,7 +22,6 @@
 		C6A2E2FF26EE72A8008CA81E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E2FE26EE72A8008CA81E /* TabBarController.swift */; };
 		C6A2E30126EE7782008CA81E /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30026EE7782008CA81E /* FilesViewController.swift */; };
 		C6A2E30326EE77A6008CA81E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30226EE77A6008CA81E /* SettingsViewController.swift */; };
-		C6A2E30526EE83CC008CA81E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30426EE83CC008CA81E /* UserModel.swift */; };
 		C6A2E30726EF5FFB008CA81E /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30626EF5FFA008CA81E /* ChangePasswordViewController.swift */; };
 		C6A2E30926EF7B11008CA81E /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A2E30826EF7B11008CA81E /* UserSettings.swift */; };
 /* End PBXBuildFile section */
@@ -58,7 +56,6 @@
 		C61E643626E8D60B0025295A /* FileManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FileManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61E643926E8D60B0025295A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C61E643B26E8D60B0025295A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C61E643D26E8D60B0025295A /* FileManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerViewController.swift; sourceTree = "<group>"; };
 		C61E644226E8D6100025295A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C61E644526E8D6100025295A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C61E644726E8D6100025295A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,7 +70,6 @@
 		C6A2E2FE26EE72A8008CA81E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C6A2E30026EE7782008CA81E /* FilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		C6A2E30226EE77A6008CA81E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		C6A2E30426EE83CC008CA81E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		C6A2E30626EF5FFA008CA81E /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		C6A2E30826EF7B11008CA81E /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		F2DE3D21D9D7C814411F7F11 /* Pods-FileManager-FileManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FileManager-FileManagerUITests.debug.xcconfig"; path = "Target Support Files/Pods-FileManager-FileManagerUITests/Pods-FileManager-FileManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -174,7 +170,6 @@
 		C61ED9F826F525F60052B7ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C6A2E30426EE83CC008CA81E /* UserModel.swift */,
 				C61E40822729A3CA00EB79C1 /* SettingsModel.swift */,
 			);
 			path = Model;
@@ -183,7 +178,6 @@
 		C61ED9F926F5261B0052B7ED /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C61E643D26E8D60B0025295A /* FileManagerViewController.swift */,
 				C6A2E2FC26EBB625008CA81E /* LoginViewController.swift */,
 				C6A2E2FE26EE72A8008CA81E /* TabBarController.swift */,
 				C6A2E30026EE7782008CA81E /* FilesViewController.swift */,
@@ -463,8 +457,6 @@
 			files = (
 				C61E40832729A3CA00EB79C1 /* SettingsModel.swift in Sources */,
 				C6A2E2FD26EBB625008CA81E /* LoginViewController.swift in Sources */,
-				C61E643E26E8D60B0025295A /* FileManagerViewController.swift in Sources */,
-				C6A2E30526EE83CC008CA81E /* UserModel.swift in Sources */,
 				C6A2E30926EF7B11008CA81E /* UserSettings.swift in Sources */,
 				C6A2E30726EF5FFB008CA81E /* ChangePasswordViewController.swift in Sources */,
 				C6A2E30326EE77A6008CA81E /* SettingsViewController.swift in Sources */,
